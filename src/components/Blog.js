@@ -20,7 +20,9 @@ const Blog = ({ blog, user, handleDeletedBlog }) => {
   }
 
   const handleDelete = () => {
-    handleDeletedBlog(blog.id)
+    if (window.confirm(`Remove blog ${blog.title} by ${blog.author}`)) {
+      handleDeletedBlog(blog.id)
+    }
   }
   // let doesUserOwnBlog
   const doesUserOwnBlog =
