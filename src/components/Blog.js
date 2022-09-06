@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import blogService from "../services/blogs"
 const Blog = ({ blog, user, handleDeletedBlog }) => {
   const [isShowMore, setIsShowMore] = useState(true)
