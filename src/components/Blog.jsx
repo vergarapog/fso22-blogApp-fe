@@ -1,7 +1,7 @@
 import { useState } from "react"
 import blogService from "../services/blogs"
 const Blog = ({ blog, user, handleDeletedBlog }) => {
-  const [isShowMore, setIsShowMore] = useState(true)
+  const [isShowMore, setIsShowMore] = useState(false)
   const [currBlog, setCurrBlog] = useState(blog)
 
   const toggleShowMore = () => {
@@ -37,7 +37,7 @@ const Blog = ({ blog, user, handleDeletedBlog }) => {
     <div>
       {isShowMore ? (
         <div>
-          <div className="p-1 border ">
+          <div className="p-1 border">
             <span className="font-bold">{currBlog.title}</span>{" "}
             <button
               onClick={toggleShowMore}
@@ -52,7 +52,6 @@ const Blog = ({ blog, user, handleDeletedBlog }) => {
                 className="py-1/2 px-2 bg-green-600 text-white rounded-md"
                 onClick={handleLike}
               >
-                {" "}
                 like
               </button>
             </div>
@@ -71,7 +70,7 @@ const Blog = ({ blog, user, handleDeletedBlog }) => {
       ) : (
         <div className="p-1 border ">
           <span className="font-bold">{currBlog.title}</span> by{" "}
-          {currBlog.author}{" "}
+          <span>{currBlog.author}</span>{" "}
           <button
             onClick={toggleShowMore}
             className="text-sm text-white bg-slate-700 rounded py-1 px-2"
