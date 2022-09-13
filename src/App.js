@@ -75,6 +75,21 @@ const App = () => {
     }
   }
 
+  const handleLike = async (id, blog) => {
+    const res = await blogService.update(blog.id, {
+      title: blog.title,
+      author: blog.author,
+      url: blog.url,
+      likes: blog.likes + 1,
+      user: blog.user.id,
+    })
+    setBlogs(
+      blogs.map((blog) => {
+        return blog.id === id ? res : blog
+      })
+    )
+  }
+
   const handleLogin = async (e) => {
     e.preventDefault()
 
@@ -126,6 +141,7 @@ const App = () => {
               blog={blog}
               user={user}
               handleDeletedBlog={handleDeletedBlog}
+              handleLike={handleLike}
             />
           ))}
         </div>

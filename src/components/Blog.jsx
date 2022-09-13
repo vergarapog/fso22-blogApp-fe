@@ -1,22 +1,11 @@
 import { useState } from "react"
-import blogService from "../services/blogs"
-const Blog = ({ blog, user, handleDeletedBlog }) => {
+// import blogService from "../services/blogs"
+const Blog = ({ blog, user, handleDeletedBlog, handleLike }) => {
   const [isShowMore, setIsShowMore] = useState(false)
-  const [currBlog, setCurrBlog] = useState(blog)
+  // const [currBlog, setCurrBlog] = useState(blog)
 
   const toggleShowMore = () => {
     setIsShowMore(!isShowMore)
-  }
-
-  const handleLike = async () => {
-    const res = await blogService.update(blog.id, {
-      title: blog.title,
-      author: blog.author,
-      url: blog.url,
-      likes: currBlog.likes + 1,
-      user: blog.user.id,
-    })
-    setCurrBlog(res)
   }
 
   const handleDelete = () => {
@@ -38,24 +27,24 @@ const Blog = ({ blog, user, handleDeletedBlog }) => {
       {isShowMore ? (
         <div>
           <div className="p-1 border">
-            <span className="font-bold">{currBlog.title}</span>{" "}
+            <span className="font-bold">{blog.title}</span>{" "}
             <button
               onClick={toggleShowMore}
               className="text-sm text-white bg-slate-700 rounded py-1 px-2"
             >
               Hide
             </button>
-            <div>Link: {currBlog.url}</div>
+            <div>Link: {blog.url}</div>
             <div>
-              Likes: {currBlog.likes}{" "}
+              Likes: {blog.likes}{" "}
               <button
                 className="py-1/2 px-2 bg-green-600 text-white rounded-md"
-                onClick={handleLike}
+                onClick={() => handleLike(blog.id, blog)}
               >
                 like
               </button>
             </div>
-            <div>Author: {currBlog.author}</div>
+            <div>Author: {blog.author}</div>
             <div>
               <button
                 className="text-sm text-white bg-red-700 rounded py-1 px-2"
@@ -69,8 +58,8 @@ const Blog = ({ blog, user, handleDeletedBlog }) => {
         </div>
       ) : (
         <div className="p-1 border ">
-          <span className="font-bold">{currBlog.title}</span> by{" "}
-          <span>{currBlog.author}</span>{" "}
+          <span className="font-bold">{blog.title}</span> by{" "}
+          <span>{blog.author}</span>{" "}
           <button
             onClick={toggleShowMore}
             className="text-sm text-white bg-slate-700 rounded py-1 px-2"

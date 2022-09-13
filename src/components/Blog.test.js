@@ -66,7 +66,7 @@ test("renders all blog information when view details is toggled", async () => {
   expect(likes).toBeDefined()
 })
 
-test("like button clicked twice ensures it is called twice", () => {
+test("like button clicked twice ensures it is called twice", async () => {
   const handleLike = jest.fn()
 
   const blog = {
@@ -89,9 +89,13 @@ test("like button clicked twice ensures it is called twice", () => {
   render(<Blog blog={blog} handleLike={handleLike} user={user} />)
 
   const testUser = userEvent.setup()
-  const likeButton = screen.findByText("like")
-  testUser.click(likeButton)
-  testUser.click(likeButton)
+
+  const showButton = await screen.findByText("View more")
+  await testUser.click(showButton)
+
+  const likeButton = await screen.findByText("like")
+  await testUser.click(likeButton)
+  await testUser.click(likeButton)
 
   expect(handleLike.mock.calls).toHaveLength(2)
 })
