@@ -38,6 +38,7 @@ const LoginForm = ({
         <button
           type="submit"
           className="rounded py-1 px-2 bg-slate-600 text-white"
+          id="loginButton"
         >
           Login
         </button>
