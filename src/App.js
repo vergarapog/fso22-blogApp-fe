@@ -23,6 +23,7 @@ const App = () => {
     if (loggedInUser) {
       const user = JSON.parse(loggedInUser)
       setUser(user)
+      blogService.setToken(user.token)
     }
   }, [])
 
@@ -49,8 +50,9 @@ const App = () => {
       setTimeout(() => {
         setNotification(null)
       }, 3000)
-
+      console.log(response)
       setBlogs(blogs.concat(response))
+      console.log(blogs)
       addBlogRef.current.toggleVisibility()
     } catch (error) {
       setNotification({

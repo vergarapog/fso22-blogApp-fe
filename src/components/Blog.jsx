@@ -1,8 +1,8 @@
-import { useState } from "react"
-// import blogService from "../services/blogs"
+import { useState, useEffect } from "react"
+
 const Blog = ({ blog, user, handleDeletedBlog, handleLike }) => {
   const [isShowMore, setIsShowMore] = useState(false)
-  // const [currBlog, setCurrBlog] = useState(blog)
+  const [doesUserOwnBlog, setDoesUserOwnBlog] = useState(false)
 
   const toggleShowMore = () => {
     setIsShowMore(!isShowMore)
@@ -14,20 +14,17 @@ const Blog = ({ blog, user, handleDeletedBlog, handleLike }) => {
     }
   }
   // let doesUserOwnBlog
-  const doesUserOwnBlog =
-    blog.user.name === user.name ? { display: "" } : { display: "none" }
 
-  // useEffect(() => {
-  //   doesUserOwnBlog =
-  //     blog.user.name === user.name ? { display: "" } : { display: "none" }
-  // }, [])
+  useEffect(() => {
+    setDoesUserOwnBlog(blog.user.name === user.name)
+  }, [])
 
   return (
     <div>
       {isShowMore ? (
         <div>
           <div className="p-1 border">
-            <span className="font-bold">{blog.title}</span>{" "}
+            <span className="font-bold blog-title">{blog.title}</span>{" "}
             <button
               onClick={toggleShowMore}
               className="text-sm text-white bg-slate-700 rounded py-1 px-2"
@@ -48,8 +45,9 @@ const Blog = ({ blog, user, handleDeletedBlog, handleLike }) => {
             <div>
               <button
                 className="text-sm text-white bg-red-700 rounded py-1 px-2"
-                style={doesUserOwnBlog}
+                style={doesUserOwnBlog ? { display: "" } : { display: "none" }}
                 onClick={handleDelete}
+                id="removeButton"
               >
                 Remove
               </button>
@@ -58,7 +56,7 @@ const Blog = ({ blog, user, handleDeletedBlog, handleLike }) => {
         </div>
       ) : (
         <div className="p-1 border ">
-          <span className="font-bold">{blog.title}</span> by{" "}
+          <span className="font-bold blog-title">{blog.title}</span> by{" "}
           <span>{blog.author}</span>{" "}
           <button
             onClick={toggleShowMore}
