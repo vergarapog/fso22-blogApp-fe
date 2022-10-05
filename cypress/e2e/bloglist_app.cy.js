@@ -119,7 +119,7 @@ describe("Blog app", () => {
         cy.get("#removeButton").should("have.css", "display", "none")
       })
 
-      it.only("list should be displayed according to the blog with the highest likes", function () {
+      it("list should be displayed according to the blog with the highest likes", function () {
         cy.get(".blog-title").eq(0).should("contain", "third blog")
         cy.get(".blog-title").eq(1).should("contain", "first blog")
       })
