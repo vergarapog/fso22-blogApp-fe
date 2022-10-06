@@ -1,4 +1,7 @@
 import { useState, useEffect, useRef } from "react"
+import { useDispatch } from "react-redux"
+import { setNotification } from "./reducers/notifReducer"
+
 import Blog from "./components/Blog"
 import blogService from "./services/blogs"
 import loginService from "./services/login"
@@ -14,9 +17,10 @@ const App = () => {
   const [username, setUsername] = useState([])
   const [password, setPassword] = useState([])
   const [user, setUser] = useState(null)
-  const [notification, setNotification] = useState(null)
 
   const addBlogRef = useRef()
+
+  const dispatch = useDispatch()
 
   useEffect(() => {
     const loggedInUser = window.localStorage.getItem("loggedBlogappUser")
@@ -104,15 +108,16 @@ const App = () => {
       blogService.setToken(user.token)
       setUsername("")
       setPassword("")
-      setNotification({ message: "Login Successful" })
-      setTimeout(() => {
-        setNotification(null)
-      }, 3000)
+
+      dispatch(setNotification({ message: "Login Successful", time: 3 }))
     } catch (error) {
-      setNotification({ type: "error", message: "Wrong Credentials" })
-      setTimeout(() => {
-        setNotification(null)
-      }, 3000)
+      dispatch(
+        setNotification({
+          message: "Wrong Credentials",
+          type: "error",
+          time: 3,
+        })
+      )
     }
   }
 
@@ -123,7 +128,7 @@ const App = () => {
 
   return (
     <div>
-      {notification && <Notification notification={notification} />}
+      <Notification />
       {user ? (
         <div>
           <div>{user.name} logged in</div>
