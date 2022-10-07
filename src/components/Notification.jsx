@@ -13,7 +13,7 @@ const Notification = () => {
     }, `${time}000`)
 
     return () => clearTimeout(timer)
-  })
+  }, [message])
 
   if (message === "") {
     return
