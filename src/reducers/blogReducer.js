@@ -40,4 +40,44 @@ export const addBlogRedux = (blog) => {
   }
 }
 
+export const handleDeleteBlog = (id) => {
+  return async (dispatch, getState) => {
+    try {
+      const { blogs } = getState()
+
+      await blogService.destroy(id)
+      const newBlogs = blogs.filter((b) => {
+        return b.id !== id
+      })
+      dispatch(setBlogs(newBlogs))
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
+
+export const handleLikeRedux = (id, blog) => {
+  return async (dispatch, getState) => {
+    try {
+      const { blogs } = getState()
+      const res = await blogService.update(blog.id, {
+        title: blog.title,
+        author: blog.author,
+        url: blog.url,
+        likes: blog.likes + 1,
+        user: blog.user.id,
+      })
+      dispatch(
+        setBlogs(
+          blogs.map((blog) => {
+            return blog.id === id ? res : blog
+          })
+        )
+      )
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
+
 export default blogSlice.reducer

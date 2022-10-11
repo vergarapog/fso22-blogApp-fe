@@ -1,8 +1,11 @@
 import { useState, useEffect } from "react"
+import { useDispatch } from "react-redux"
+import { handleDeleteBlog, handleLikeRedux } from "../reducers/blogReducer"
 
-const Blog = ({ blog, user, handleDeletedBlog, handleLike }) => {
+const Blog = ({ blog, user }) => {
   const [isShowMore, setIsShowMore] = useState(false)
   const [doesUserOwnBlog, setDoesUserOwnBlog] = useState(false)
+  const dispatch = useDispatch()
 
   const toggleShowMore = () => {
     setIsShowMore(!isShowMore)
@@ -10,10 +13,13 @@ const Blog = ({ blog, user, handleDeletedBlog, handleLike }) => {
 
   const handleDelete = () => {
     if (window.confirm(`Remove blog ${blog.title} by ${blog.author}`)) {
-      handleDeletedBlog(blog.id)
+      dispatch(handleDeleteBlog(blog.id))
     }
   }
-  // let doesUserOwnBlog
+
+  const handleLike = (id, blog) => {
+    dispatch(handleLikeRedux(id, blog))
+  }
 
   useEffect(() => {
     setDoesUserOwnBlog(blog.user.name === user.name)

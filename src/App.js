@@ -18,8 +18,6 @@ import LogoutButton from "./components/LogoutButton"
 const App = () => {
   const user = useSelector((state) => state.user)
 
-  // const [user, setUser] = useState(null)
-
   const addBlogRef = useRef()
 
   const dispatch = useDispatch()
@@ -54,18 +52,6 @@ const App = () => {
       )
     }
   }
-
-  // const handleDeletedBlog = async (id) => {
-  //   try {
-  //     await blogService.destroy(id)
-  //     const newBlogs = blogs.filter((b) => {
-  //       return b.id !== id
-  //     })
-  //     setBlogs(newBlogs)
-  //   } catch (error) {
-  //     console.log(error)
-  //   }
-  // }
 
   return (
     <div>
