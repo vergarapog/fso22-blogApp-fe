@@ -1,6 +1,5 @@
-import { useEffect, useRef } from "react"
+import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { setNotification } from "./reducers/notifReducer"
 
 //components
 import LoginForm from "./shared/LoginForm"
@@ -11,14 +10,14 @@ import BlogList from "./components/BlogList"
 
 //reducer
 import { initializeBlogs } from "./reducers/blogReducer"
-import { addBlogRedux } from "./reducers/blogReducer"
+
 import { getUserFromLocStorage } from "./reducers/userReducer"
 import LogoutButton from "./components/LogoutButton"
 
 const App = () => {
   const user = useSelector((state) => state.user)
 
-  const addBlogRef = useRef()
+  // const addBlogRef = useRef()
 
   const dispatch = useDispatch()
 
@@ -30,29 +29,6 @@ const App = () => {
     dispatch(initializeBlogs())
   }, [])
 
-  const createBlog = async (newBlog) => {
-    try {
-      dispatch(addBlogRedux(newBlog))
-
-      dispatch(
-        setNotification({
-          message: `${newBlog.title} by  ${newBlog.author} successfully added`,
-          time: 3,
-        })
-      )
-
-      addBlogRef.current.toggleVisibility()
-    } catch (error) {
-      dispatch(
-        setNotification({
-          message: "Adding Failed Please try again",
-          type: "error",
-          time: 3,
-        })
-      )
-    }
-  }
-
   return (
     <div>
       <Notification />
@@ -60,8 +36,8 @@ const App = () => {
         <div>
           <div>{user.name} logged in</div>
           <LogoutButton />
-          <Toggleable buttonLabel={"Add Blog"} ref={addBlogRef}>
-            <BlogForm createBlog={createBlog} />
+          <Toggleable buttonLabel={"Add Blog"}>
+            <BlogForm />
           </Toggleable>
           <BlogList />
         </div>

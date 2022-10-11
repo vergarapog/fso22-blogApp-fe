@@ -1,6 +1,11 @@
 import { useState } from "react"
+import { setNotification } from "../reducers/notifReducer"
+import { useDispatch } from "react-redux"
+import { addBlogRedux } from "../reducers/blogReducer"
 
-const BlogForm = ({ createBlog }) => {
+const BlogForm = () => {
+  const dispatch = useDispatch()
+
   //blog form data state
   const [title, setTitle] = useState("")
   const [author, setAuthor] = useState("")
@@ -9,6 +14,29 @@ const BlogForm = ({ createBlog }) => {
   const handleAddBlog = (e) => {
     e.preventDefault()
     createBlog({ title, author, url })
+  }
+
+  const createBlog = async (newBlog) => {
+    try {
+      dispatch(addBlogRedux(newBlog))
+
+      dispatch(
+        setNotification({
+          message: `${newBlog.title} by  ${newBlog.author} successfully added`,
+          time: 3,
+        })
+      )
+
+      // addBlogRef.current.toggleVisibility()
+    } catch (error) {
+      dispatch(
+        setNotification({
+          message: "Adding Failed Please try again",
+          type: "error",
+          time: 3,
+        })
+      )
+    }
   }
 
   return (
