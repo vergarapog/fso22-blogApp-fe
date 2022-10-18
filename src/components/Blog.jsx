@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react"
 import { useDispatch } from "react-redux"
 import { handleDeleteBlog, handleLikeRedux } from "../reducers/blogReducer"
+import { Link } from "react-router-dom"
 
 const Blog = ({ blog, user }) => {
   const [isShowMore, setIsShowMore] = useState(false)
@@ -62,8 +63,10 @@ const Blog = ({ blog, user }) => {
         </div>
       ) : (
         <div className="p-1 border ">
-          <span className="font-bold blog-title">{blog.title}</span> by{" "}
-          <span>{blog.author}</span>{" "}
+          <span className="font-bold blog-title">
+            <Link to={`blogs/${blog.id}`}>{blog.title}</Link>
+          </span>{" "}
+          by <span>{blog.author}</span>{" "}
           <button
             onClick={toggleShowMore}
             className="text-sm text-white bg-slate-700 rounded py-1 px-2"
