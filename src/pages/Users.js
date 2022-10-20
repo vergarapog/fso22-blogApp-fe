@@ -7,7 +7,7 @@ const Users = () => {
   const { users } = useSelector((state) => state)
 
   return (
-    <div>
+    <div className="my-6">
       Users
       <div className="flex justify-between px-8 py-4 max-w-sm ">
         <div className="font-bold">

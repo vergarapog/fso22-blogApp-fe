@@ -10,12 +10,18 @@ const Navbar = ({ user }) => {
       <div>
         <h1 className="text-2xl ">BlogzApp</h1>
       </div>
-      <div className="sm:flex hidden  space-x-2 items-center">
+      <div className="sm:flex hidden  space-x-4 items-center">
         <div>{user ? <div>Welcome, {user.name} </div> : ""}</div>
-        <Link to="/" className="hover:bg-green-300 px-2 py-1 rounded">
+        <Link
+          to="/"
+          className="hover:bg-green-300 px-2 py-1 rounded border border-solid"
+        >
           home
         </Link>
-        <Link to="/users" className="hover:bg-green-300 px-2 py-1 rounded">
+        <Link
+          to="/users"
+          className="hover:bg-green-300 px-2 py-1 rounded border border-solid"
+        >
           users
         </Link>
       </div>
@@ -29,10 +35,16 @@ const Navbar = ({ user }) => {
         ></img>
         <div className={`${toggle ? "flex" : "hidden"}`}>
           <div>{user ? <div>Welcome, {user.name} </div> : ""}</div>
-          <Link to="/" className="hover:bg-green-300 px-2 py-1 rounded">
+          <Link
+            to="/"
+            className="hover:bg-green-300 px-2 py-1 rounded border border-solid"
+          >
             home
           </Link>
-          <Link to="/users" className="hover:bg-green-300 px-2 py-1 rounded">
+          <Link
+            to="/users"
+            className="hover:bg-green-300 px-2 py-1 rounded border border-solid"
+          >
             users
           </Link>
         </div>

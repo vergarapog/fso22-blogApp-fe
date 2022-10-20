@@ -35,4 +35,10 @@ const destroy = async (id) => {
   return response.data
 }
 
-export default { getAll, create, setToken, update, destroy }
+const submitComment = async (id, blogPost) => {
+  const response = await axios.post(`${baseUrl}/${id}/comments`, blogPost)
+
+  return response.data
+}
+
+export default { getAll, create, setToken, update, destroy, submitComment }

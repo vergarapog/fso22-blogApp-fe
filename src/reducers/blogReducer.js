@@ -80,4 +80,32 @@ export const handleLikeRedux = (id, blog) => {
   }
 }
 
+export const handleNewComment = (id, singleBlog, newComment) => {
+  return async (dispatch, getState) => {
+    try {
+      const { blogs } = getState()
+
+      const updatedComments = singleBlog.comments.concat(newComment)
+
+      const blogWithNewComment = {
+        ...singleBlog,
+        user: singleBlog.user.id,
+        comments: updatedComments,
+      }
+
+      const res = await blogService.submitComment(id, blogWithNewComment)
+
+      dispatch(
+        setBlogs(
+          blogs.map((blog) => {
+            return blog.id === id ? res : blog
+          })
+        )
+      )
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
+
 export default blogSlice.reducer

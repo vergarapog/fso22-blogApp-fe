@@ -10,7 +10,7 @@ const Home = () => {
   const user = useSelector((state) => state.user)
 
   return (
-    <div>
+    <div className="py-5">
       {user ? (
         <div>
           <LogoutButton />

@@ -57,20 +57,29 @@ const App = () => {
           <Navbar user={user} />
         </div>
       </div>
-      <Notification />
-      <Routes>
-        <Route
-          path="/users/:id"
-          element={<SingleUser singleUser={singleUser} />}
-        />
-        <Route
-          path="/blogs/:id"
-          element={<SingleBlog singleBlog={singleBlog} />}
-        />
-        <Route path="/users" element={<Users />} key={document.location.href} />
-        <Route path="/" element={<Home />} />
-        <Route path="*" element={<div>404 Not Found</div>} />
-      </Routes>
+
+      <div className={`${styles.paddingX} ${styles.flexStart}`}>
+        <div className={`${styles.boxWidth} `}>
+          <Notification />
+          <Routes>
+            <Route
+              path="/users/:id"
+              element={<SingleUser singleUser={singleUser} />}
+            />
+            <Route
+              path="/blogs/:id"
+              element={<SingleBlog singleBlog={singleBlog} />}
+            />
+            <Route
+              path="/users"
+              element={<Users />}
+              key={document.location.href}
+            />
+            <Route path="/" element={<Home />} />
+            <Route path="*" element={<div>404 Not Found</div>} />
+          </Routes>
+        </div>
+      </div>
     </div>
   )
 }
