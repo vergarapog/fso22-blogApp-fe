@@ -1,8 +1,10 @@
 /* eslint-disable indent */
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { Routes, Route, Link } from "react-router-dom"
+import { Routes, Route } from "react-router-dom"
 import { useMatch } from "react-router-dom"
+
+import styles from "./styles"
 
 import Home from "./pages/Home"
 import Users from "./pages/Users"
@@ -14,6 +16,7 @@ import { initializeBlogs } from "./reducers/blogReducer"
 import { getUserFromLocStorage } from "./reducers/userReducer"
 import { getAllUsers } from "./reducers/usersReducer"
 import SingleBlog from "./pages/SingleBlog"
+import Navbar from "./components/Navbar"
 
 const App = () => {
   const dispatch = useDispatch()
@@ -48,19 +51,13 @@ const App = () => {
     : null
 
   return (
-    <div>
-      <Notification />
-      <h1>Blogs</h1>
-      {user ? <div>{user.name} logged in</div> : ""}
-      <div className="space-x-2">
-        <Link to="/" className="bg-green-300 px-2 py-1 rounded">
-          home
-        </Link>
-        <Link to="/users" className="bg-green-300 px-2 py-1 rounded">
-          users
-        </Link>
+    <div className="font-poppins">
+      <div className={`${styles.paddingX} ${styles.flexCenter}`}>
+        <div className={`${styles.boxWidth} `}>
+          <Navbar user={user} />
+        </div>
       </div>
-
+      <Notification />
       <Routes>
         <Route
           path="/users/:id"
