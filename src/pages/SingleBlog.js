@@ -37,7 +37,7 @@ const SingleBlog = ({ singleBlog }) => {
           <div className="flex space-x-2 max-w-sm">
             <input
               type="text"
-              className="bg-gray-100 rounded border border-black"
+              className="p-1 bg-gray-100 rounded border border-black"
               value={newComment}
               onChange={(e) => setNewComment(e.target.value)}
             />

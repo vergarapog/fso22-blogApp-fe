@@ -1,7 +1,7 @@
 import React from "react"
 import { useState } from "react"
 import { Link } from "react-router-dom"
-import { menu } from "../assets"
+import { menu, close } from "../assets"
 
 const Navbar = ({ user }) => {
   const [toggle, setToggle] = useState(false)
@@ -28,12 +28,16 @@ const Navbar = ({ user }) => {
 
       <div className="sm:hidden flex">
         <img
-          src={menu}
+          src={toggle ? close : menu}
           alt="menu"
           className="w-7 h-7"
           onClick={() => setToggle((prev) => !prev)}
         ></img>
-        <div className={`${toggle ? "flex" : "hidden"}`}>
+        <div
+          className={`${
+            toggle ? "top-12" : "invisible top-32 opacity-0"
+          } flex flex-col absolute right-5 p-4 bg-gray-500 text-white rounded-lg transition-all`}
+        >
           <div>{user ? <div>Welcome, {user.name} </div> : ""}</div>
           <Link
             to="/"
