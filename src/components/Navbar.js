@@ -1,14 +1,20 @@
 import React from "react"
 import { useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
 import { Link } from "react-router-dom"
 import { menu, close } from "../assets"
+import LogoutButton from "../components/LogoutButton"
+import { setNavMenuFalse, toggleNavMenu } from "../reducers/navMenuReducer"
 
 const Navbar = ({ user }) => {
-  const [toggle, setToggle] = useState(false)
+  const navMenuState = useSelector((state) => state.navMenu)
+  const dispatch = useDispatch()
   return (
     <nav className="flex justify-between py-2">
       <div>
-        <h1 className="text-2xl ">BlogzApp</h1>
+        <h1 className="text-2xl ">
+          <Link to="/">Blagg.</Link>
+        </h1>
       </div>
       <div className="sm:flex hidden  space-x-4 items-center">
         <div>{user ? <div>Welcome, {user.name} </div> : ""}</div>
@@ -28,29 +34,41 @@ const Navbar = ({ user }) => {
 
       <div className="sm:hidden flex">
         <img
-          src={toggle ? close : menu}
+          src={navMenuState ? close : menu}
           alt="menu"
           className="w-7 h-7"
-          onClick={() => setToggle((prev) => !prev)}
+          onClick={() => dispatch(toggleNavMenu())}
         ></img>
         <div
           className={`${
-            toggle ? "top-12" : "invisible top-32 opacity-0"
-          } flex flex-col absolute right-5 p-4 bg-gray-500 text-white rounded-lg transition-all`}
+            navMenuState ? "top-12" : "invisible top-32 opacity-0 "
+          } flex flex-col absolute right-5 p-4 bg-gray-600 text-white rounded-lg transition-all`}
         >
-          <div>{user ? <div>Welcome, {user.name} </div> : ""}</div>
+          <div>
+            {user ? (
+              <div>
+                Welcome, {user.name}
+                <hr className="py-2" />
+              </div>
+            ) : (
+              ""
+            )}
+          </div>
           <Link
             to="/"
-            className="hover:bg-green-300 px-2 py-1 rounded border border-solid"
+            className="hover:bg-dimWhite hover:text-black px-2 py-2 rounded "
+            onClick={() => dispatch(setNavMenuFalse())}
           >
-            home
+            Home
           </Link>
           <Link
             to="/users"
-            className="hover:bg-green-300 px-2 py-1 rounded border border-solid"
+            className="hover:bg-dimWhite hover:text-black px-2 py-2 rounded "
+            onClick={() => dispatch(setNavMenuFalse())}
           >
-            users
+            Users
           </Link>
+          <LogoutButton />
         </div>
       </div>
     </nav>

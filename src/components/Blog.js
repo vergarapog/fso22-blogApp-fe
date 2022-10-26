@@ -30,7 +30,7 @@ const Blog = ({ blog, user }) => {
     <div>
       {isShowMore ? (
         <div>
-          <div className="p-1 border">
+          <div className="p-3 border">
             <span className="font-bold blog-title">{blog.title}</span>{" "}
             <button
               onClick={toggleShowMore}
@@ -62,7 +62,7 @@ const Blog = ({ blog, user }) => {
           </div>
         </div>
       ) : (
-        <div className="p-1 border ">
+        <div className="p-3 border ">
           <span className="font-bold blog-title">
             <Link to={`blogs/${blog.id}`}>{blog.title}</Link>
           </span>{" "}

@@ -1,15 +1,28 @@
 import React from "react"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { handleLogoutReducer } from "../reducers/userReducer"
+import { useNavigate } from "react-router-dom"
+import { setNavMenuFalse } from "../reducers/navMenuReducer"
 
 const LogoutButton = () => {
   const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const user = useSelector((state) => state.user)
+
+  const handleLogout = () => {
+    dispatch(handleLogoutReducer())
+    dispatch(setNavMenuFalse())
+    navigate("/")
+  }
+
   return (
     <button
-      onClick={() => dispatch(handleLogoutReducer())}
-      className="py-1 px-3 bg-slate-600 rounded text-white"
+      onClick={handleLogout}
+      className={`${user ? "block" : "hidden"} pt-4 text-right text-white`}
     >
-      Logout
+      <span className="rounded bg-red-500 hover:bg-red-700 py-1 px-2">
+        Logout
+      </span>
     </button>
   )
 }

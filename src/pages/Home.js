@@ -1,7 +1,6 @@
 import React from "react"
 import { useSelector } from "react-redux"
 import BlogList from "../components/BlogList"
-import LogoutButton from "../components/LogoutButton"
 import Toggleable from "../components/Toggleable"
 import BlogForm from "../shared/BlogForm"
 import LoginForm from "../shared/LoginForm"
@@ -11,19 +10,24 @@ const Home = () => {
 
   return (
     <div className="py-5">
-      {user ? (
-        <div>
-          <LogoutButton />
-          <Toggleable buttonLabel={"Add Blog"}>
-            <BlogForm />
+      <h2 className="text-4xl">All Blogs:</h2>
+      <hr className="" />
+      <div>
+        {user ? (
+          <div>
+            <div className="py-4">
+              <Toggleable buttonLabel={"Add Blog"}>
+                <BlogForm />
+              </Toggleable>
+            </div>
+            <BlogList />
+          </div>
+        ) : (
+          <Toggleable buttonLabel={"Login"}>
+            <LoginForm />
           </Toggleable>
-          <BlogList />
-        </div>
-      ) : (
-        <Toggleable buttonLabel={"Login"}>
-          <LoginForm />
-        </Toggleable>
-      )}
+        )}
+      </div>
     </div>
   )
 }

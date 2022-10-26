@@ -2,7 +2,7 @@ import React, { useState } from "react"
 
 import { useDispatch } from "react-redux"
 // import { setNotification } from "../reducers/notifReducer"
-import { handleLoginReducer } from "../reducers/userReducer"
+import { handleLoginReducer, setUser } from "../reducers/userReducer"
 
 const LoginForm = () => {
   const dispatch = useDispatch()
@@ -20,8 +20,17 @@ const LoginForm = () => {
       .catch((err) => console.log(err))
   }
 
+  const enterCorrectDetails = () => {
+    setUsername("user1")
+    setPassword("user1")
+  }
+
   return (
     <div>
+      <button className="text-xs opacity-20" onClick={enterCorrectDetails}>
+        DevCorrectDetails
+      </button>
+
       <form onSubmit={handleLogin}>
         <div>
           <label htmlFor="username">Username:</label>

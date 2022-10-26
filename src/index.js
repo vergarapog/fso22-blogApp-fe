@@ -12,6 +12,7 @@ import notifReducer from "./reducers/notifReducer"
 import blogReducer from "./reducers/blogReducer"
 import userReducer from "./reducers/userReducer"
 import usersReducer from "./reducers/usersReducer"
+import navMenuReducer from "./reducers/navMenuReducer"
 
 const store = configureStore({
   reducer: {
@@ -19,6 +20,7 @@ const store = configureStore({
     blogs: blogReducer,
     user: userReducer,
     users: usersReducer,
+    navMenu: navMenuReducer,
   },
 })
 

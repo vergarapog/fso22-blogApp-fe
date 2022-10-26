@@ -8,7 +8,8 @@ const Users = () => {
 
   return (
     <div className="my-6">
-      Users
+      <h2 className="text-4xl">Users:</h2>
+      <hr className="" />
       <div className="flex justify-between px-8 py-4 max-w-sm ">
         <div className="font-bold">
           <h1>Name</h1>
@@ -29,6 +30,15 @@ const Users = () => {
               return <div key={user.id}>{user.blogs.length}</div>
             })}
           </ul>
+        </div>
+      </div>
+
+      <div className="flex justify-between px-8 py-4 max-w-lg ">
+        <div className="font-bold">
+          <h1>Name</h1>
+        </div>
+        <div className="font-bold">
+          <h1>Blogs created</h1>
         </div>
       </div>
     </div>
