@@ -2,14 +2,14 @@ import React from "react"
 import { useSelector } from "react-redux"
 import BlogList from "../components/BlogList"
 import Toggleable from "../components/Toggleable"
-import BlogForm from "../shared/BlogForm"
-import LoginForm from "../shared/LoginForm"
+import BlogForm from "../components/shared/BlogForm"
+import LoginForm from "../components/shared/LoginForm"
 
 const Home = () => {
   const user = useSelector((state) => state.user)
 
   return (
-    <div className="my-6">
+    <div className="my-6 fl">
       <h2 className="text-4xl">All Blogs:</h2>
       <hr className="" />
       <div>

@@ -1,7 +1,7 @@
 import { useState } from "react"
-import { setNotification } from "../reducers/notifReducer"
+import { setNotification } from "../../reducers/notifReducer"
 import { useDispatch } from "react-redux"
-import { addBlogRedux } from "../reducers/blogReducer"
+import { addBlogRedux } from "../../reducers/blogReducer"
 
 const BlogForm = () => {
   const dispatch = useDispatch()
