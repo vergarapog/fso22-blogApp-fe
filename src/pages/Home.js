@@ -9,18 +9,22 @@ const Home = () => {
   const user = useSelector((state) => state.user)
 
   return (
-    <div className="py-5">
+    <div className="my-6">
       <h2 className="text-4xl">All Blogs:</h2>
       <hr className="" />
       <div>
         {user ? (
           <div>
             <div className="py-4">
-              <Toggleable buttonLabel={"Add Blog"}>
-                <BlogForm />
-              </Toggleable>
+              <BlogList />
             </div>
-            <BlogList />
+            <div className="py-4 flex w-full">
+              <div className="ml-auto">
+                <Toggleable buttonLabel={"Add Blog"}>
+                  <BlogForm />
+                </Toggleable>
+              </div>
+            </div>
           </div>
         ) : (
           <Toggleable buttonLabel={"Login"}>
