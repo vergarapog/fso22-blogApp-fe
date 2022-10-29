@@ -2,6 +2,7 @@ import { useState } from "react"
 import { setNotification } from "../../reducers/notifReducer"
 import { useDispatch } from "react-redux"
 import { addBlogRedux } from "../../reducers/blogReducer"
+import { getAllUsers } from "../../reducers/usersReducer"
 
 const BlogForm = () => {
   const dispatch = useDispatch()
@@ -18,7 +19,7 @@ const BlogForm = () => {
 
   const createBlog = async (newBlog) => {
     try {
-      dispatch(addBlogRedux(newBlog))
+      await dispatch(addBlogRedux(newBlog))
 
       dispatch(
         setNotification({
@@ -26,6 +27,7 @@ const BlogForm = () => {
           time: 3,
         })
       )
+      await dispatch(getAllUsers())
 
       // addBlogRef.current.toggleVisibility()
     } catch (error) {

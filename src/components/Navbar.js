@@ -5,10 +5,17 @@ import { Link } from "react-router-dom"
 import { menu, close } from "../assets"
 import LogoutButton from "../components/LogoutButton"
 import { setNavMenuFalse, toggleNavMenu } from "../reducers/navMenuReducer"
+import { useGlobalContext } from "../context"
 
 const Navbar = ({ user }) => {
   const navMenuState = useSelector((state) => state.navMenu)
   const dispatch = useDispatch()
+
+  const { openSubMenu } = useGlobalContext()
+
+  const displaySubMenu = (e) => {
+    openSubMenu()
+  }
   return (
     <nav className="flex justify-between py-2">
       <div>
@@ -17,7 +24,9 @@ const Navbar = ({ user }) => {
         </h1>
       </div>
       <div className="sm:flex hidden  space-x-4 items-center">
-        <div>{user ? <div>Welcome, {user.name} </div> : ""}</div>
+        <div onMouseOver={displaySubMenu}>
+          {user ? <div>Welcome, {user.name} </div> : ""}
+        </div>
         <Link
           to="/"
           className="hover:bg-green-300 px-2 py-1 rounded border border-solid"

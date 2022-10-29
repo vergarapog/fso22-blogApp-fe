@@ -3,12 +3,21 @@ import "@testing-library/jest-dom/extend-expect"
 import { render, screen } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
 import BlogForm from "./BlogForm"
+import { Provider } from "react-redux"
+import { MemoryRouter as Router } from "react-router-dom"
+import store from "../../reducers/store"
 
 test("<BlogForm /> calls createBlog correctly with the correct props", async () => {
   const createBlog = jest.fn()
   const user = userEvent.setup()
 
-  render(<BlogForm createBlog={createBlog} />)
+  render(
+    <Router>
+      <Provider store={store}>
+        <BlogForm createBlog={createBlog} />
+      </Provider>
+    </Router>
+  )
 
   const titleInput = screen.getByPlaceholderText("title")
   const authorInput = screen.getByPlaceholderText("author")

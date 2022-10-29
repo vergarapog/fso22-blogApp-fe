@@ -10,11 +10,11 @@ const Home = () => {
 
   return (
     <div className="my-6 fl">
-      <h2 className="text-4xl">All Blogs:</h2>
-      <hr className="" />
       <div>
         {user ? (
           <div>
+            <h2 className="text-4xl">All Blogs:</h2>
+            <hr className="" />
             <div className="py-4">
               <BlogList />
             </div>

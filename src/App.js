@@ -17,6 +17,7 @@ import { getUserFromLocStorage } from "./reducers/userReducer"
 import { getAllUsers } from "./reducers/usersReducer"
 import SingleBlog from "./pages/SingleBlog"
 import Navbar from "./components/Navbar"
+import Submenu from "./components/Submenu"
 
 const App = () => {
   const dispatch = useDispatch()
@@ -55,6 +56,7 @@ const App = () => {
       <div className={`${styles.paddingX} ${styles.flexCenter}`}>
         <div className={`${styles.boxWidth} `}>
           <Navbar user={user} />
+          <Submenu />
         </div>
       </div>
 
