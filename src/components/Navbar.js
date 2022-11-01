@@ -11,13 +11,22 @@ const Navbar = ({ user }) => {
   const navMenuState = useSelector((state) => state.navMenu)
   const dispatch = useDispatch()
 
-  const { openSubMenu } = useGlobalContext()
+  const { openSubMenu, closeSubMenu } = useGlobalContext()
 
   const displaySubMenu = (e) => {
-    openSubMenu()
+    const tempBtn = e.target.getBoundingClientRect()
+    const center = (tempBtn.left + tempBtn.right) / 2
+    const bottom = tempBtn.bottom - 3
+    openSubMenu({ center, bottom })
+  }
+
+  const handleNavMouseOver = (e) => {
+    if (!e.target.classList.contains("submenu")) {
+      closeSubMenu()
+    }
   }
   return (
-    <nav className="flex justify-between py-2">
+    <nav className="flex justify-between py-2" onMouseOver={handleNavMouseOver}>
       <div>
         <h1 className="text-2xl ">
           <Link to="/">Blagg.</Link>
@@ -25,7 +34,7 @@ const Navbar = ({ user }) => {
       </div>
       <div className="sm:flex hidden  space-x-4 items-center">
         <div onMouseOver={displaySubMenu}>
-          {user ? <div>Welcome, {user.name} </div> : ""}
+          {user ? <div className="submenu">Welcome, {user.name} </div> : ""}
         </div>
         <Link
           to="/"

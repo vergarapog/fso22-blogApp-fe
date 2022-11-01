@@ -4,8 +4,10 @@ const AppContext = React.createContext()
 
 const AppProvider = ({ children }) => {
   const [isSubMenuOpen, setIsSubMenuOpen] = useState(false)
+  const [location, setLocation] = useState({})
 
-  const openSubMenu = () => {
+  const openSubMenu = (coordinates) => {
+    setLocation(coordinates)
     setIsSubMenuOpen(true)
   }
 
@@ -14,7 +16,15 @@ const AppProvider = ({ children }) => {
   }
 
   return (
-    <AppContext.Provider value={{ isSubMenuOpen, openSubMenu, closeSubMenu }}>
+    <AppContext.Provider
+      value={{
+        isSubMenuOpen,
+        location,
+        setLocation,
+        openSubMenu,
+        closeSubMenu,
+      }}
+    >
       {children}
     </AppContext.Provider>
   )

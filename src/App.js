@@ -18,6 +18,7 @@ import { getAllUsers } from "./reducers/usersReducer"
 import SingleBlog from "./pages/SingleBlog"
 import Navbar from "./components/Navbar"
 import Submenu from "./components/Submenu"
+import { useGlobalContext } from "./context"
 
 const App = () => {
   const dispatch = useDispatch()
@@ -51,6 +52,8 @@ const App = () => {
       })
     : null
 
+  const { closeSubMenu } = useGlobalContext()
+
   return (
     <div className="font-poppins">
       <div className={`${styles.paddingX} ${styles.flexCenter}`}>
@@ -60,7 +63,11 @@ const App = () => {
         </div>
       </div>
 
-      <div className={`${styles.paddingX} ${styles.flexStart}`}>
+      <div
+        className={`${styles.paddingX} ${styles.flexStart}`}
+        onMouseOver={closeSubMenu}
+      >
+        asd
         <div className={`${styles.boxWidth} `}>
           <Notification />
           <Routes>
