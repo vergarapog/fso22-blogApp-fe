@@ -1,6 +1,7 @@
 import React from "react"
 import { useEffect, useRef } from "react"
 import { useGlobalContext } from "../context"
+import LogoutButton from "../components/LogoutButton"
 
 const Submenu = () => {
   const { isSubMenuOpen, location } = useGlobalContext()
@@ -15,11 +16,11 @@ const Submenu = () => {
   return (
     <aside
       className={`${
-        isSubMenuOpen ? "block" : "hidden"
-      } bg-secondary shadow-lg absolute top-16 left-1/2 -translate-x-1/2 p-8 rounded-md`}
+        isSubMenuOpen ? "block" : "hidden transition-all"
+      } bg-gray-600 shadow-lg absolute top-16 left-1/2 -translate-x-1/2 p-6 rounded-md`}
       ref={container}
     >
-      Submenu
+      <LogoutButton />
     </aside>
   )
 }

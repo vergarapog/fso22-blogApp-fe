@@ -18,7 +18,7 @@ const LogoutButton = () => {
   return (
     <button
       onClick={handleLogout}
-      className={`${user ? "block" : "hidden"} pt-4 text-right text-white`}
+      className={`${user ? "block" : "hidden"}  text-right text-white`}
     >
       <span className="rounded bg-red-500 hover:bg-red-700 py-1 px-2">
         Logout

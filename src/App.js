@@ -67,7 +67,6 @@ const App = () => {
         className={`${styles.paddingX} ${styles.flexStart}`}
         onMouseOver={closeSubMenu}
       >
-        asd
         <div className={`${styles.boxWidth} `}>
           <Notification />
           <Routes>

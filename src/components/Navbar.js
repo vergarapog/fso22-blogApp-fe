@@ -86,7 +86,9 @@ const Navbar = ({ user }) => {
           >
             Users
           </Link>
-          <LogoutButton />
+          <div className="pt-2 self-end">
+            <LogoutButton />
+          </div>
         </div>
       </div>
     </nav>
